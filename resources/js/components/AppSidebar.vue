@@ -5,9 +5,8 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { ChartLine, ClipboardList, Factory, LayoutGrid, ShoppingBag, ShoppingCart, UsersIcon } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
-import MainMenu from '@/Shared/MainMenu.vue';
 
 const mainNavItems: NavItem[] = [
     {
@@ -15,20 +14,40 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Sales',
+        href: '/sales',
+        icon: ShoppingCart,
+    },
+    {
+        title: 'Purchases',
+        href: '/purchases',
+        icon: ShoppingBag,
+    },
+    {
+        title: 'Manufacturers',
+        href: '/manufacturers',
+        icon: Factory,
+    },
+    {
+        title: 'Medicines',
+        href: '/medicines',
+        icon: ClipboardList,
+    },
+    {
+        title: 'Customers',
+        href: '/customers',
+        icon: UsersIcon,
+    },
+    {
+        title: 'Stocks',
+        href: '/stocks',
+        icon: ChartLine,
+    },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
+const footerNavItems: NavItem[] = [];
+
 </script>
 
 <template>
@@ -38,7 +57,7 @@ const footerNavItems: NavItem[] = [
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
                         <Link :href="route('dashboard')">
-                            <AppLogo />
+                        <AppLogo />
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -47,8 +66,7 @@ const footerNavItems: NavItem[] = [
 
         <SidebarContent>
             <NavMain :items="mainNavItems" />
-            <MainMenu class="pt-6 md:block md:rounded-b-md" />
-            
+
         </SidebarContent>
 
         <SidebarFooter>
