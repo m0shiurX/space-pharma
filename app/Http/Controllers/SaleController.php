@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Sale;
-use Inertia\Inertia;
+use App\Http\Requests\StoreSaleRequest;
+use App\Http\Requests\UpdateSaleRequest;
+use App\Http\Resources\SalesItemResource;
+use App\Http\Resources\StockResource;
 use App\Models\Customer;
 use App\Models\Medicine;
+use App\Models\Sale;
 use App\Models\SalesItem;
-use Illuminate\Support\Facades\DB;
-use App\Http\Resources\StockResource;
-use App\Http\Requests\StoreSaleRequest;
-use Illuminate\Support\Facades\Request;
-use App\Http\Requests\UpdateSaleRequest;
 use App\Notifications\SalesNotification;
-use App\Http\Resources\SalesItemResource;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class SaleController extends Controller
 {
-
     public function index()
     {
         return Inertia::render('Sales/Index', [
@@ -41,15 +40,14 @@ class SaleController extends Controller
                     'exchange_amount' => $sale->exchange_amount,
                     'created_at' => Carbon::parse($sale->created_at)->format('M d, Y'),
                     'updated_at' => Carbon::parse($sale->updated_at)->format('M d, Y'),
-                ])
+                ]),
         ]);
     }
-
 
     public function create()
     {
         $latest_invoice = \App\Models\Sale::withTrashed()->latest()->max('id') + 1;
-        $invoice_no = 'SL-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
+        $invoice_no = 'SL-'.str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
 
         return Inertia::render('Sales/Create', [
             'filters' => Request::only('search'),
@@ -60,11 +58,10 @@ class SaleController extends Controller
                 ->map(fn ($customer) => [
                     'id' => $customer->id,
                     'name' => $customer->name,
-                    'phone' => $customer->phone
+                    'phone' => $customer->phone,
                 ]),
         ]);
     }
-
 
     public function store(StoreSaleRequest $request)
     {
@@ -83,7 +80,6 @@ class SaleController extends Controller
                 'exchange_amount',
             ]));
 
-
             foreach ($request->sales_items as $sales_item) {
                 $entry = [];
                 $entry['sale_id'] = $sale->id;
@@ -100,12 +96,11 @@ class SaleController extends Controller
 
         $customer = Customer::find($request->only('customer_id'))->first();
         if ($customer->phone != 0) {
-            $customer->notify(new SalesNotification());
+            $customer->notify(new SalesNotification);
         }
 
         return redirect()->route('sales.index')->with('success', 'Successfully created and sent sms!');
     }
-
 
     public function show(Sale $sale)
     {
@@ -125,23 +120,20 @@ class SaleController extends Controller
                 'grand_total' => $sale->grand_total,
                 'paid_amount' => $sale->paid_amount,
                 'exchange_amount' => $sale->exchange_amount,
-                'sales_items' => SalesItemResource::collection($sale->salesItems)
-            ]
+                'sales_items' => SalesItemResource::collection($sale->salesItems),
+            ],
         ]);
     }
-
 
     public function edit(Sale $sale)
     {
         //
     }
 
-
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
         //
     }
-
 
     public function destroy(Sale $sale)
     {
@@ -161,7 +153,7 @@ class SaleController extends Controller
                 'strength' => $medicine->strength,
                 'selling_price' => $medicine->selling_price,
                 'discount' => $medicine->discount,
-                'stocks' => StockResource::collection($medicine->stocks)
+                'stocks' => StockResource::collection($medicine->stocks),
             ]);
     }
 }

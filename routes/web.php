@@ -1,17 +1,16 @@
 <?php
 
-use Inertia\Inertia;
-use App\Notifications\SmsMessage;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SaleController;
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\StockController;
+use App\Notifications\SmsMessage;
+use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\ProfileController;
-use App\Http\Controllers\ManufacturerController;
-
+use Inertia\Inertia;
 
 Route::redirect('/', '/dashboard')->name('home');
 
@@ -33,14 +32,12 @@ Route::middleware('auth')->group(function (): void {
         $sms->to('+8801719454658')->line('Hello World.')->line('Open.')->send();
     });
 
-
     // Profile management
     // Route::controller(ProfileController::class)->group(function (): void {
     //     Route::get('profile', 'index')->name('profile');
     //     Route::get('profile/edit', 'create')->name('profile.edit');
     //     Route::put('profile/update', 'update')->name('profile.update');
     // });
-
 
     // Resources
     Route::resource('stocks', StockController::class);
@@ -57,11 +54,10 @@ Route::middleware('auth')->group(function (): void {
     Route::resource('manufacturers', ManufacturerController::class);
 });
 
-
 // Images
 Route::get('/storage/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('storage');
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';

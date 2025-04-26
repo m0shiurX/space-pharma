@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
 {
@@ -12,7 +12,7 @@ class Stock extends Model
     use SoftDeletes;
 
     protected $casts = [
-        'expiry_date' => 'date:Y-m-d'
+        'expiry_date' => 'date:Y-m-d',
     ];
 
     protected $fillable = [
@@ -21,7 +21,6 @@ class Stock extends Model
         'expiry_date',
         'stock',
     ];
-
 
     public function medicine()
     {
@@ -33,7 +32,7 @@ class Stock extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search): void {
             $query->whereHas('medicine', function ($query) use ($search): void {
-                $query->where('name', 'like', $search . '%');
+                $query->where('name', 'like', $search.'%');
             });
         });
     }

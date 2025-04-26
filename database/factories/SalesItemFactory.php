@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SalesItemFactory extends Factory
@@ -15,13 +14,13 @@ class SalesItemFactory extends Factory
         $discount = $this->faker->randomDigitNot(0);
 
         return [
-            'sale_id'       => 1,
-            'medicine_id'   => $this->faker->randomElement($medicines),
-            'batch_id'      => $this->faker->numerify('B22-####'),
-            'quantity'      => $quantity,
+            'sale_id' => 1,
+            'medicine_id' => $this->faker->randomElement($medicines),
+            'batch_id' => $this->faker->numerify('B22-####'),
+            'quantity' => $quantity,
             'selling_price' => $unit_price,
-            'discount'      => $discount,
-            'total_price'   => number_format((($discount / ($quantity * $unit_price)) * 100), 2)
+            'discount' => $discount,
+            'total_price' => number_format((($discount / ($quantity * $unit_price)) * 100), 2),
         ];
     }
 }

@@ -21,18 +21,15 @@ class SalesItem extends Model
         'total_price',
     ];
 
-
     public function medicine()
     {
         return $this->belongsTo(Medicine::class);
     }
 
-
     public function sale()
     {
         return $this->belongsTo(Sale::class);
     }
-
 
     // public function setSellingPriceAttribute($value)
     // {

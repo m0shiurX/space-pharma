@@ -3,9 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use App\Notifications\SmsChannel;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SalesNotification extends Notification
 {
@@ -26,6 +24,6 @@ class SalesNotification extends Notification
         return (new SmsMessage)
             ->from('Netway')
             ->to($notifiable->phone)
-            ->line("You have just made a purchase from Akota Pharmacy");
+            ->line('You have just made a purchase from Akota Pharmacy');
     }
 }

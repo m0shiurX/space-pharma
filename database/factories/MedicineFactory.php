@@ -23,7 +23,7 @@ class MedicineFactory extends Factory
             'purchase_price' => $purchase_price,
             'selling_price' => $purchase_price + 2,
             'discount' => 5.00,
-            'is_active' => 1
+            'is_active' => 1,
         ];
     }
 }

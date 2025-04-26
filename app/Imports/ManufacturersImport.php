@@ -3,14 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Manufacturer;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\WithUpserts;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 
-class ManufacturersImport implements ToModel, WithHeadingRow, WithChunkReading, WithUpserts, ShouldQueue
+class ManufacturersImport implements ShouldQueue, ToModel, WithChunkReading, WithHeadingRow, WithUpserts
 {
     use Importable;
 
@@ -18,11 +18,12 @@ class ManufacturersImport implements ToModel, WithHeadingRow, WithChunkReading, 
     {
         return new Manufacturer([
             'name' => $row['manufacturer'],
-            'location'  => 'Bangladesh',
+            'location' => 'Bangladesh',
             'contact_name' => 'Contact Person',
-            'contact_tel' => '+8801 XXX XXX XXX'
+            'contact_tel' => '+8801 XXX XXX XXX',
         ]);
     }
+
     public function chunkSize(): int
     {
         return 1000;

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Customer;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
-
+use App\Models\Customer;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
@@ -39,6 +38,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         Customer::create($request->validated());
+
         return Redirect::route('customers.index')->with('success', 'Customer created.');
     }
 
@@ -50,7 +50,7 @@ class CustomerController extends Controller
                 'name' => $customer->name,
                 'address' => $customer->address,
                 'phone' => $customer->phone,
-            ]
+            ],
         ]);
     }
 
@@ -62,19 +62,21 @@ class CustomerController extends Controller
                 'name' => $customer->name,
                 'address' => $customer->address,
                 'phone' => $customer->phone,
-            ]
+            ],
         ]);
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update($request->validated());
+
         return Redirect::route('customers.index')->with('success', 'Successfully updated.');
     }
 
     public function destroy(Customer $customer)
     {
         $customer->delete();
+
         return Redirect::route('customers.index')->with('success', 'Successfully deleted.');
     }
 }

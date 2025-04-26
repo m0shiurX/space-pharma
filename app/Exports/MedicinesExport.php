@@ -10,7 +10,6 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class MedicinesExport implements FromCollection
 {
-
     public function collection(): collection
     {
         return Medicine::with('manufacturer')

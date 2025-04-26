@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use DateTimeInterface;
-use App\Models\Manufacturer;
-use App\Models\PurchaseItem;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Purchase extends Model
 {
@@ -25,10 +23,10 @@ class Purchase extends Model
         'paid_amount',
         'due_amount',
     ];
-    protected $casts = [
-        'purchase_date' => 'date'
-    ];
 
+    protected $casts = [
+        'purchase_date' => 'date',
+    ];
 
     public function manufacturer()
     {
@@ -46,7 +44,7 @@ class Purchase extends Model
 
         static::creating(function ($model): void {
             $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
-            $model->invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
+            $model->invoice_no = 'PR-'.str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
         });
     }
 
@@ -55,7 +53,7 @@ class Purchase extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search): void {
             $query->whereHas('manufacturer', function ($query) use ($search): void {
-                $query->where('name', 'like', '%' . $search . '%');
+                $query->where('name', 'like', '%'.$search.'%');
             });
         });
     }

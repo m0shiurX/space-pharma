@@ -2,17 +2,18 @@
 
 namespace App\Notifications;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class SmsMessage
 {
-
     protected string $user;
+
     protected string $password;
+
     protected string $to;
+
     protected string $from;
+
     protected array $lines;
 
     public function __construct($lines = [])
@@ -47,7 +48,7 @@ class SmsMessage
 
     public function send()
     {
-        if (!$this->from || !$this->to || !count($this->lines)) {
+        if (! $this->from || ! $this->to || ! count($this->lines)) {
             throw new \Exception('SMS not correct.');
         }
 
@@ -55,7 +56,7 @@ class SmsMessage
             $this->baseUrl,
             [
                 'api_key' => $this->api_key,
-                "type" => "text",
+                'type' => 'text',
                 'senderid' => $this->from,
                 'contacts' => $this->to,
                 'msg' => implode(' ', $this->lines),

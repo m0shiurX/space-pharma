@@ -2,9 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Notifications\SalesNotification;
-use Illuminate\Notifications\Notification;
-
 class SmsChannel
 {
     public function send($notifiable, SalesNotification $notification)

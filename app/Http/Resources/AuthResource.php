@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 
 class AuthResource extends JsonResource
 {
@@ -13,7 +13,7 @@ class AuthResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'photo'  => $this->photo_path ? URL::route('storage', ['path' => $this->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+            'photo' => $this->photo_path ? URL::route('storage', ['path' => $this->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
         ];
     }
 }

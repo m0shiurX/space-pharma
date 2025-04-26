@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -16,15 +16,12 @@ class RolesAndPermissionsSeeder extends Seeder
         // Resetting cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-
         /**************************************
          * Creating Roles
          **************************************/
         $admin_role = Role::create(['name' => 'admin']);
         $manager_role = Role::create(['name' => 'manager']);
         $engineer_role = Role::create(['name' => 'super_admin']);
-
-
 
         /**************************************
          * Creating persmissions
@@ -58,7 +55,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $update_purchases = Permission::create(['name' => 'update_purchases']);
         $restore_purchases = Permission::create(['name' => 'restore_purchases']);
 
-
         /**************************************
          * Assigning persmissions
          **************************************/
@@ -67,10 +63,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $create_manufacturers, $read_manufacturers, $delete_manufacturers, $update_manufacturers,            $restore_manufacturers,
             $create_medicines, $read_medicines, $delete_medicines, $update_medicines, $restore_medicines,
             $create_sales, $read_sales, $delete_sales, $update_sales, $restore_sales,
-            $create_purchases, $read_purchases, $delete_purchases, $update_purchases, $restore_purchases
+            $create_purchases, $read_purchases, $delete_purchases, $update_purchases, $restore_purchases,
         ]);
-
-
 
         /**************************************
          * Seeding with demo users TODO: RM
@@ -98,7 +92,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         ]);
         $engineer->assignRole($engineer_role);
-
 
         // create mass admin
         $users = \App\Models\User::factory(5)->create()->each(function ($user) {

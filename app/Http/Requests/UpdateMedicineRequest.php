@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateMedicineRequest extends FormRequest
 {
@@ -26,7 +26,6 @@ class UpdateMedicineRequest extends FormRequest
             'discount' => ['required', 'numeric', 'between:0,30'],
         ];
     }
-
 
     protected function prepareForValidation(): void
     {

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Inertia\Inertia;
-use App\Models\Manufacturer;
-use Illuminate\Support\Facades\Bus;
 use App\Exports\ManufacturersExport;
-use App\Imports\ManufacturersImport;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreManufacturerRequest;
 use App\Http\Requests\UpdateManufacturerRequest;
-
+use App\Imports\ManufacturersImport;
+use App\Models\Manufacturer;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ManufacturerController extends Controller
 {
@@ -44,6 +43,7 @@ class ManufacturerController extends Controller
     public function store(StoreManufacturerRequest $request)
     {
         Manufacturer::create($request->validated());
+
         return Redirect::route('manufacturers.index')->with('success', 'Manufacturer created.');
     }
 
@@ -56,7 +56,7 @@ class ManufacturerController extends Controller
                 'location' => $manufacturer->location,
                 'contact_name' => $manufacturer->contact_name,
                 'contact_tel' => $manufacturer->contact_tel,
-            ]
+            ],
         ]);
     }
 
@@ -69,7 +69,7 @@ class ManufacturerController extends Controller
                 'location' => $manufacturer->location,
                 'contact_name' => $manufacturer->contact_name,
                 'contact_tel' => $manufacturer->contact_tel,
-            ]
+            ],
         ]);
     }
 
@@ -89,7 +89,6 @@ class ManufacturerController extends Controller
         // return Redirect::back()->with('success', 'Successfully deleted.');
         return Redirect::route('manufacturers.index')->with('success', 'Successfully deleted.');
     }
-
 
     public function importManufacturers(\Illuminate\Http\Request $request)
     {

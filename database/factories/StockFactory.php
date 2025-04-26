@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StockFactory extends Factory
 {
-
     public function definition(): array
     {
         $medicines = \App\Models\Medicine::all()->pluck('id')->toArray();

@@ -3,8 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Medicine;
-use App\Models\Stock;
 use App\Models\PurchaseItem;
+use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseItemObserver
@@ -13,7 +13,7 @@ class PurchaseItemObserver
     {
         Stock::updateOrCreate(
             ['medicine_id' => $purchaseItem->medicine_id, 'batch_id' => $purchaseItem->batch_id],
-            ['stock' => DB::raw('stock+' . $purchaseItem->quantity), 'expiry_date' => $purchaseItem->expiry_date]
+            ['stock' => DB::raw('stock+'.$purchaseItem->quantity), 'expiry_date' => $purchaseItem->expiry_date]
         );
 
         Medicine::where('id', $purchaseItem->medicine_id)
@@ -33,12 +33,10 @@ class PurchaseItemObserver
         //
     }
 
-
     public function restored(PurchaseItem $purchaseItem): void
     {
         //
     }
-
 
     public function forceDeleted(PurchaseItem $purchaseItem): void
     {

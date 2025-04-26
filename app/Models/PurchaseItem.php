@@ -3,17 +3,14 @@
 namespace App\Models;
 
 use DateTimeInterface;
-use App\Models\Medicine;
-use App\Models\Purchase;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PurchaseItem extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
 
     protected $fillable = [
         'purchase_id',
@@ -28,9 +25,8 @@ class PurchaseItem extends Model
     ];
 
     protected $casts = [
-        'expiry_date' => 'date'
+        'expiry_date' => 'date',
     ];
-
 
     public function medicine()
     {

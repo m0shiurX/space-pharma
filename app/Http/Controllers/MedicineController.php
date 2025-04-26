@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Inertia\Inertia;
-use App\Models\Medicine;
-use App\Models\Manufacturer;
 use App\Exports\MedicinesExport;
-use App\Imports\MedicinesImport;
-use Illuminate\Support\Facades\Bus;
-use App\Imports\ManufacturersImport;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Resources\StockResource;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreMedicineRequest;
 use App\Http\Requests\UpdateMedicineRequest;
+use App\Http\Resources\StockResource;
+use App\Imports\MedicinesImport;
+use App\Models\Manufacturer;
+use App\Models\Medicine;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MedicineController extends Controller
 {
@@ -40,23 +39,24 @@ class MedicineController extends Controller
                     'purchase_price' => $medicine->purchase_price,
                     'selling_price' => $medicine->selling_price,
                     'discount' => $medicine->discount,
-                    'in_stock'  => $medicine->stocks_sum_stock,
+                    'in_stock' => $medicine->stocks_sum_stock,
                     'created_at' => Carbon::parse($medicine->created_at)->format('M d, Y'),
                     'updated_at' => Carbon::parse($medicine->updated_at)->format('M d, Y'),
-                ])
+                ]),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Medicines/Create', [
-            'manufacturers' => Manufacturer::select('id', 'name')->get()
+            'manufacturers' => Manufacturer::select('id', 'name')->get(),
         ]);
     }
 
     public function store(StoreMedicineRequest $request)
     {
         Medicine::create($request->validated());
+
         return Redirect::route('medicines.index')->with('success', 'Medicine created.');
     }
 
@@ -75,13 +75,14 @@ class MedicineController extends Controller
                 'selling_price' => $medicine->selling_price,
                 'discount' => $medicine->discount,
                 'stocks' => StockResource::collection($medicine->stocks),
-            ]
+            ],
         ]);
     }
 
     public function edit(Medicine $medicine)
     {
         $medicine->load('manufacturer');
+
         return Inertia::render('Medicines/Edit', [
             'manufacturers' => Manufacturer::select('id', 'name')->get(),
             'medicine' => [
@@ -95,19 +96,21 @@ class MedicineController extends Controller
                 'purchase_price' => $medicine->purchase_price,
                 'selling_price' => $medicine->selling_price,
                 'discount' => $medicine->discount,
-            ]
+            ],
         ]);
     }
 
     public function update(UpdateMedicineRequest $request, Medicine $medicine)
     {
         $medicine->update($request->validated());
+
         return Redirect::route('medicines.index')->with('success', 'Successfully updated.');
     }
 
     public function destroy(Medicine $medicine)
     {
         $medicine->delete();
+
         return Redirect::route('medicines.index')->with('success', 'Successfully deleted.');
     }
 
@@ -115,6 +118,7 @@ class MedicineController extends Controller
     {
         $file_path = $request->file('file')->store('storage');
         Bus::chain([Excel::import(new MedicinesImport, $file_path)]);
+
         return redirect()->route('medicines.index')->with('success', 'Successfully started importing!');
     }
 

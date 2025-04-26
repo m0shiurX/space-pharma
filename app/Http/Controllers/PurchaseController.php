@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Inertia\Inertia;
-use App\Models\Medicine;
-use App\Models\Purchase;
-use App\Models\Manufacturer;
-use App\Models\PurchaseItem;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use App\Http\Resources\PurchaseItemResource;
+use App\Models\Manufacturer;
+use App\Models\Medicine;
+use App\Models\Purchase;
+use App\Models\PurchaseItem;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class PurchaseController extends Controller
 {
@@ -39,14 +39,14 @@ class PurchaseController extends Controller
                     'due_amount' => $purchase->due_amount,
                     'created_at' => Carbon::parse($purchase->created_at)->format('M d, Y'),
                     'updated_at' => Carbon::parse($purchase->updated_at)->format('M d, Y'),
-                ])
+                ]),
         ]);
     }
 
     public function create()
     {
         $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
-        $invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
+        $invoice_no = 'PR-'.str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
 
         return Inertia::render('Purchases/Create', [
             'filters' => Request::only('search'),
@@ -57,7 +57,7 @@ class PurchaseController extends Controller
                 ->map(fn ($manufacturer) => [
                     'id' => $manufacturer->id,
                     'name' => $manufacturer->name,
-                    'location' => $manufacturer->location
+                    'location' => $manufacturer->location,
                 ]),
         ]);
     }
@@ -75,9 +75,8 @@ class PurchaseController extends Controller
                 'discount',
                 'grand_total',
                 'paid_amount',
-                'due_amount'
+                'due_amount',
             ]));
-
 
             foreach ($request->purchase_items as $purchase_item) {
                 $entry = [];
@@ -115,8 +114,8 @@ class PurchaseController extends Controller
                 'paid_amount' => $purchase->paid_amount,
                 'due_amount' => $purchase->due_amount,
                 'purchase_date' => Carbon::parse($purchase->purchase_date)->format('d M, Y'),
-                'purchase_items' => PurchaseItemResource::collection($purchase->purchaseItems)
-            ]
+                'purchase_items' => PurchaseItemResource::collection($purchase->purchaseItems),
+            ],
         ]);
     }
 

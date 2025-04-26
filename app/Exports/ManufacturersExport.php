@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ManufacturersExport implements FromCollection
 {
-
     public function collection(): collection
     {
         return Manufacturer::query()
