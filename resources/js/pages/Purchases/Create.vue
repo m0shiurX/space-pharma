@@ -26,7 +26,7 @@
                                     <Icon icon="manufacturer" class="w-8 h-8 stroke-orange-300" />
                                     <div class="flex flex-col ml-2">
                                         <span class="font-semibold text-slate-500 text-sm">{{ manufacturer.name
-                                        }}</span>
+                                            }}</span>
                                         <span class="text-slate-400 text-xs">{{ manufacturer.location }}</span>
                                     </div>
                                 </div>
@@ -43,18 +43,6 @@
                                             v-model.number="form.manufacturer_id" :options="props.manufacturers"
                                             :reduce="(manufacturer) => manufacturer.id" label="name" />
                                     </div>
-                                    <!-- <label class="block mb-2" for="manufacturer"> Manufacturer</label>
-                                    <select
-                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 appearance-none focus:ring-orange-400"
-                                        v-model="form.manufacturer_id"
-                                        id="manufacturer"
-                                        required
-                                    >
-                                        <option value="" selected>Select a Manufacturer</option>
-                                        <option v-for="manufacturer in props.manufacturers" :key="manufacturer.id" :value="manufacturer.id">
-                                            {{ manufacturer.name }}
-                                        </option>
-                                    </select> -->
                                 </div>
                                 <div class="flex-1">
                                     <label class="block mb-2" for="purchase_date">Purchase Date</label>
@@ -261,10 +249,8 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import AuthLayout from '@/layouts/AuthLayout.vue';
-import BaseInput from '@/Shared/BaseInput.vue';
 import CurrencyInput from '@/Units/CurrencyInput.vue';
 import Icon from '@/Shared/Icon.vue';
 import { ref, computed, watch } from 'vue';
@@ -311,7 +297,7 @@ const manufacturer = ref({
 });
 
 const changeManufacturer = (id) => {
-    let detail = props.manufacturers.find((item) => item.id === id);
+    const detail = props.manufacturers.find((item) => item.id === id);
     if (detail) {
         manufacturer.value = detail;
     }
@@ -331,12 +317,14 @@ const selectedMedicine = ref();
 watch(
     search,
     debounce((txt) => {
-        txt.length > 1 &&
+        if (txt.length > 1) {
+
             axios
                 .get(route('purchases.medicine'), {
                     params: { query: txt },
                 })
                 .then((result) => (filteredMedicine.value = result.data));
+        }
     }, 500),
 );
 
@@ -354,13 +342,13 @@ const softResetSearch = () => {
 
 const selectItem = () => {
     if (filteredMedicine.value.length > 0) {
-        let item = filteredMedicine.value[highlightedIndex.value];
+        const item = filteredMedicine.value[highlightedIndex.value];
         selectedMedicine.value = item;
         resetSearch();
     }
 };
 const clickedItem = (index) => {
-    let item = filteredMedicine.value[index];
+    const item = filteredMedicine.value[index];
     selectedMedicine.value = item;
     resetSearch();
 };
@@ -372,7 +360,9 @@ const highlightNext = () => {
     }
 };
 const highlightPrevious = () => {
-    highlightedIndex.value > 0 && highlightedIndex.value--;
+    if (highlightedIndex.value > 0) {
+        highlightedIndex.value--;
+    }
 };
 
 // Manage table rows with form
@@ -391,66 +381,85 @@ watch(
     () => form.purchase_items,
     (items) => {
         items.map((item) => {
-            let vat = +Number((parseFloat(item.total_price) / 100) * form.vat).toFixed(2);
-            let rate = +Number((parseFloat(item.total_price) + vat) / item.quantity).toFixed(2);
+            const vat = +Number((parseFloat(item.total_price) / 100) * form.vat).toFixed(2);
+            const rate = +Number((parseFloat(item.total_price) + vat) / item.quantity).toFixed(2);
 
-            return [(item.vat = vat), (item.purchase_price = rate ? rate : 0)];
+            item.vat = vat;
+            item.purchase_price = rate ? rate : 0;
         });
     },
     { deep: true },
 );
 
 // Sub total
-form.sub_total = computed({
-    get() {
-        return +Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.total_price), 0).toFixed(2));
+watch(
+    () => form.purchase_items,
+    (items) => {
+        if (items.length > 0) {
+            form.sub_total = +Number(items.reduce((accumulator, current) => {
+                return accumulator + parseFloat(current.total_price);
+            }, 0)).toFixed(2);
+        } else {
+            form.sub_total = 0;
+        }
     },
-});
+    { deep: true }
+);
 
 // Purchase date
-form.grand_total = computed({
-    get() {
-        if (form.purchase_items.length == 0) return 0;
-        if (!isNaN(form.discount) && form.discount > 0) {
-            return +Number(Math.round(form.sub_total - form.discount + form.vat_total)).toFixed(2);
+watch(
+    [() => form.sub_total, () => form.discount, () => form.vat_total, () => form.purchase_items],
+    () => {
+        if (form.purchase_items.length == 0) {
+            form.grand_total = 0;
+        } else if (!isNaN(form.discount) && form.discount > 0) {
+            form.grand_total = +Number(Math.round(form.sub_total - form.discount + form.vat_total)).toFixed(2);
         } else {
-            return +Number(Math.round(form.sub_total + form.vat_total)).toFixed(2);
+            form.grand_total = +Number(Math.round(form.sub_total + form.vat_total)).toFixed(2);
         }
     },
-});
+    { deep: true }
+);
 
-form.vat_total = computed({
-    get() {
-        if (form.purchase_items.length == 0) return 0;
-        if (form.vat == 0) return 0;
-
-        return +Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.vat), 0).toFixed(2));
+watch(
+    [() => form.purchase_items, () => form.vat],
+    () => {
+        if (form.purchase_items.length == 0 || form.vat == 0) {
+            form.vat_total = 0;
+        } else {
+            form.vat_total = +Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.vat), 0).toFixed(2));
+        }
     },
-});
+    { deep: true }
+);
 
-form.due_amount = computed({
-    get() {
+watch(
+    [() => form.grand_total, () => form.paid_amount],
+    () => {
         if (!isNaN(form.paid_amount) && form.paid_amount > 0) {
-            return +Number(form.grand_total - form.paid_amount).toFixed(2);
+            form.due_amount = +Number(form.grand_total - form.paid_amount).toFixed(2);
         } else {
-            return +form.grand_total;
+            form.due_amount = +form.grand_total;
         }
     },
-});
+    { immediate: true }
+);
 
 const removeItem = (index) => {
     form.purchase_items.splice(index, 1);
 };
 
 // Form Actions
-const saveItem = () => {
-    !form.processing &&
-        form.post(route('purchases.store'), {
-            preserveScroll: true,
-        });
+const saveItem = async () => {
+    if (!form.processing) {
+        try {
+            await form.post(route('purchases.store'), {
+                preserveScroll: true,
+            });
+        } catch (error) {
+            console.error('Error saving purchase:', error);
+        }
+    }
 };
-const reset = () => {
-    form.purchase_items = [];
-    form.reset();
-};
+
 </script>

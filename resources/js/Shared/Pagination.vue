@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/no-reserved-component-names -->
+<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <template>
     <div v-if="links.length > 3">
         <div class="flex flex-wrap justify-center -mb-1">
@@ -12,15 +14,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/vue3';
 
-export default {
-    components: {
-        Link,
-    },
-    props: {
-        links: Array,
-    },
-};
 </script>

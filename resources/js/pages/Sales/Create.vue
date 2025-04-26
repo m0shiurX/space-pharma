@@ -305,7 +305,7 @@ const customer = ref({
 });
 
 const changeCustomer = (id) => {
-    let detail = props.customers.find((item) => item.id === id);
+    const detail = props.customers.find((item) => item.id === id);
     if (detail) {
         customer.value = detail;
     }
@@ -357,13 +357,13 @@ const softResetSearch = () => {
 
 const selectItem = () => {
     if (filteredMedicine.value.length > 0) {
-        let item = filteredMedicine.value[highlightedIndex.value];
+        const item = filteredMedicine.value[highlightedIndex.value];
         selectedMedicine.value = item;
         resetSearch();
     }
 };
 const clickedItem = (index) => {
-    let item = filteredMedicine.value[index];
+    const item = filteredMedicine.value[index];
     selectedMedicine.value = item;
     resetSearch();
 };
@@ -390,8 +390,8 @@ watch(
     () => form.sales_items,
     (items) => {
         items.map((item) => {
-            let net_price = Number(item.quantity * item.selling_price).toFixed(2);
-            let discount = Number((item.discount * net_price) / 100).toFixed(2);
+            const net_price = Number(item.quantity * item.selling_price).toFixed(2);
+            const discount = Number((item.discount * net_price) / 100).toFixed(2);
             return (item.total_price = Number(net_price - discount).toFixed(2));
         });
     },

@@ -32,13 +32,9 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 
-const props = defineProps({
-    manufacturer: Object,
-});
 
 const destroyManufacturer = () => {
     if (confirm('Are you sure you want to delete this organization?')) {

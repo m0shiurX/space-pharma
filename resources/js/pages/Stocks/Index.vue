@@ -93,9 +93,8 @@
     </AuthLayout>
 </template>
 <script setup>
-import { watch, ref, onMounted } from 'vue';
+import { watch } from 'vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
@@ -103,7 +102,6 @@ import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
 import debounce from 'lodash/debounce';
 import FlashMessages from '@/Shared/FlashMessages.vue';
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 
 const props = defineProps({
     stocks: Object,

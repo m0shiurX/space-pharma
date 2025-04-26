@@ -29,17 +29,12 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 
-const props = defineProps({
-    customer: Object,
-});
 
 const destroyCustomer = () => {
     if (confirm('Are you sure you want to delete this organization?')) {
         // Inertia.delete(route('customers.destroy', props.customer.id));
     }
 };
-</script>
