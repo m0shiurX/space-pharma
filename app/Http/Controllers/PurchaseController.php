@@ -25,7 +25,7 @@ class PurchaseController extends Controller
                 ->filter(Request::only('search'))
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn ($purchase) => [
+                ->through(fn($purchase) => [
                     'id' => $purchase->id,
                     'invoice_no' => $purchase->invoice_no,
                     'purchase_date' => Carbon::parse($purchase->purchase_date)->format('M d, Y'),
@@ -46,7 +46,7 @@ class PurchaseController extends Controller
     public function create()
     {
         $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
-        $invoice_no = 'PR-'.str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
+        $invoice_no = 'PR-' . str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
 
         return Inertia::render('Purchases/Create', [
             'filters' => Request::only('search'),
@@ -54,7 +54,7 @@ class PurchaseController extends Controller
             'manufacturers' => Manufacturer::select(['id', 'name', 'location'])
                 ->orderBy('name', 'asc')
                 ->get()
-                ->map(fn ($manufacturer) => [
+                ->map(fn($manufacturer) => [
                     'id' => $manufacturer->id,
                     'name' => $manufacturer->name,
                     'location' => $manufacturer->location,
@@ -141,7 +141,7 @@ class PurchaseController extends Controller
             ->filter(['search' => $request->input('query')])
             ->limit(20)
             ->get()
-            ->map(fn ($medicine) => [
+            ->map(fn($medicine) => [
                 'id' => $medicine->id,
                 'name' => $medicine->name,
                 'strength' => $medicine->strength,
