@@ -259,10 +259,9 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+
 import AuthLayout from '@/layouts/AuthLayout.vue';
-import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';
 import { ref, computed, watch } from 'vue';
 import moment from 'moment';
@@ -334,12 +333,14 @@ const selectedMedicine = ref();
 watch(
     search,
     debounce((txt) => {
-        txt.length > 1 &&
+        if (txt.length > 1) {
             axios
                 .get(route('sales.medicine'), {
                     params: { query: txt },
                 })
                 .then((result) => (filteredMedicine.value = result.data));
+        }
+
     }, 500),
 );
 
@@ -375,7 +376,7 @@ const highlightNext = () => {
     }
 };
 const highlightPrevious = () => {
-    highlightedIndex.value > 0 && highlightedIndex.value--;
+    if (highlightedIndex.value > 0) { highlightedIndex.value-- };
 };
 
 // Manage table rows with form
@@ -437,8 +438,5 @@ const saveItem = () => {
         preserveScroll: true,
     });
 };
-const reset = () => {
-    form.sales_items = [];
-    form.reset();
-};
+
 </script>

@@ -140,25 +140,22 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
+
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { ref } from 'vue';
-import { Printd } from 'printd';
+// import { Printd } from 'printd';
 
-const props = defineProps({
+defineProps({
     purchase: Object,
 });
 
-const printer = new Printd();
+// const printer = new Printd();
 
 const printDiv = ref(null);
-const testPrint = ref(null);
 
 const printItem = () => {
     console.log('trying to print the invoice', printDiv.value);
 };
-const printTest = () => {
-    // printer.print(testPrint.value, cssText);
-};
+
 </script>

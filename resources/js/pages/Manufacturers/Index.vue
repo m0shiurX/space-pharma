@@ -128,7 +128,7 @@
         </div>
     </AppLayout>
 </template>
-<script setup lang="ts">
+<script setup>
 import { watch, computed } from 'vue';
 import { Head, useForm, usePage, Link } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination.vue';
@@ -141,7 +141,6 @@ import FlashMessages from '@/Shared/FlashMessages.vue';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 
 
-const page = usePage<SharedData>();
 // const user = page.props.auth.user as User;
 
 const roles = computed(() => usePage().props.auth.role);

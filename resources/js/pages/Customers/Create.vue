@@ -16,7 +16,7 @@
                             <div class="flex justify-start items-center divide-x-2">
                                 <div class="flex items-center pr-2">
                                     <Icon icon="location" class="w-8 h-8 stroke-orange-300" />
-                                    <div class="flex flex-col hidden ml-2">
+                                    <div class="flex-col hidden ml-2">
                                         <span class="text-slate-400 text-xs">Step 1/3</span>
                                         <span class="text-slate-500 text-sm"> Updating a customer </span>
                                     </div>
@@ -63,7 +63,6 @@
 </template>
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';

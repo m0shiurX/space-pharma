@@ -33,11 +33,11 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
+
 import AuthLayout from '@/layouts/AuthLayout.vue';
 
-const props = defineProps({
+defineProps({
     medicine: Object,
 });
 

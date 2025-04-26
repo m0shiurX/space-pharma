@@ -78,14 +78,6 @@
                                             {{ sale.invoice_discount }}
                                         </th>
                                     </tr>
-                                    <!-- <tr class="bg-gray-50 border border-gray-100 h-10">
-                                        <th colspan="4" class="border-gray-100 border-x">
-                                            <div class="flex justify-end items-center pr-5">VAT</div>
-                                        </th>
-                                        <th colspan="1" class="border-gray-100 border-r">
-                                            {{ sale.vat }}
-                                        </th>
-                                    </tr> -->
                                     <tr class="bg-gray-50 border border-gray-100 h-10">
                                         <th colspan="4" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Grand Total</div>
@@ -133,13 +125,13 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
+
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { ref } from 'vue';
 import { Printd } from 'printd';
 
-const props = defineProps({
+defineProps({
     sale: Object,
 });
 
@@ -183,7 +175,7 @@ const cssText = `
 }`;
 
 const printItem = () => {
-    // printer.print(printDiv.value, cssText);
+    printer.print(printDiv.value, cssText);
     window.print();
     console.log('trying to print the invoice', printDiv.value);
 };

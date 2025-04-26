@@ -122,10 +122,6 @@ watch(
     }, 500),
 );
 
-const destroyItem = (item) => {
-    console.log(item);
-    // Inertia.delete(route('stocks.destroy', item));
-};
 
 const resetSearch = () => {
     form.reset();

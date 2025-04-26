@@ -127,7 +127,7 @@
 <script setup>
 import { watch } from 'vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+
 import Pagination from '@/Shared/Pagination.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
