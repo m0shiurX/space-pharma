@@ -2,7 +2,7 @@
 
     <Head title="Customers" />
 
-    <AuthLayout>
+    <AppLayout>
         <template #header>
             <h2 class="font-semibold text-gray-800 text-xl leading-tight">Sales #{{ invoice_no }}</h2>
         </template>
@@ -256,12 +256,12 @@
                 </form>
             </div>
         </div>
-    </AuthLayout>
+    </AppLayout>
 </template>
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
 
-import AuthLayout from '@/layouts/AuthLayout.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
 import Icon from '@/Shared/Icon.vue';
 import { ref, computed, watch } from 'vue';
 import moment from 'moment';

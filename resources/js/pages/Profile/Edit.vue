@@ -1,68 +1,105 @@
 <template>
-
     <Head title="Edit Profile" />
-    <AuthLayout>
+    <AppLayout>
         <template #header>
-            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Edit Profile</h2>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Edit Profile</h2>
         </template>
 
         <div class="py-12">
-            <div class="mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                <div class="bg-white shadow-xs sm:rounded-lg overflow-hidden">
-                    <div class="bg-white p-6 border-gray-200 border-b">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="shadow-xs overflow-hidden bg-white sm:rounded-lg">
+                    <div class="border-b border-gray-200 bg-white p-6">
                         <form @submit.prevent="update">
                             <div class="group relative z-0 mb-6 w-full">
-                                <input type="text" name="name" id="floating_name"
-                                    class="block focus:outline-hidden bg-transparent px-0 py-2.5 border-0 border-slate-400 dark:border-gray-600 border-b-2 focus:border-blue-600 dark:focus:border-blue-500 w-full text-gray-900 text-sm dark:text-white peer appearance-none focus:ring-0"
-                                    placeholder=" " required="" v-model="form.name" />
-                                <label for="floating_name"
-                                    class="top-3 peer-focus:left-0 -z-10 absolute text-gray-500 text-sm dark:peer-focus:text-blue-500 dark:text-gray-400 peer-focus:text-blue-600 transform origin-[0] -translate-y-6 peer-focus:-translate-y-6 peer-placeholder-shown:translate-y-0 duration-300 scale-75 peer-placeholder-shown:scale-100 peer-focus:scale-75">Full
-                                    Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="floating_name"
+                                    class="focus:outline-hidden peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                    placeholder=" "
+                                    required=""
+                                    v-model="form.name"
+                                />
+                                <label
+                                    for="floating_name"
+                                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 dark:peer-focus:text-blue-500"
+                                    >Full Name</label
+                                >
                             </div>
                             <div class="group relative z-0 mb-6 w-full">
-                                <input type="email" name="email" id="floating_email"
-                                    class="block focus:outline-hidden bg-transparent px-0 py-2.5 border-0 border-slate-400 dark:border-gray-600 border-b-2 focus:border-blue-600 dark:focus:border-blue-500 w-full text-gray-900 text-sm dark:text-white peer appearance-none focus:ring-0"
-                                    placeholder=" " required="" v-model="form.email" />
-                                <label for="floating_email"
-                                    class="top-3 peer-focus:left-0 -z-10 absolute text-gray-500 text-sm dark:peer-focus:text-blue-500 dark:text-gray-400 peer-focus:text-blue-600 transform origin-[0] -translate-y-6 peer-focus:-translate-y-6 peer-placeholder-shown:translate-y-0 duration-300 scale-75 peer-placeholder-shown:scale-100 peer-focus:scale-75">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="floating_email"
+                                    class="focus:outline-hidden peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                    placeholder=" "
+                                    required=""
+                                    v-model="form.email"
+                                />
+                                <label
+                                    for="floating_email"
+                                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 dark:peer-focus:text-blue-500"
+                                    >Email</label
+                                >
                             </div>
-                            <div class="xl:gap-6 grid xl:grid-cols-2">
+                            <div class="grid xl:grid-cols-2 xl:gap-6">
                                 <div class="group relative z-0 mb-6 w-full">
-                                    <input type="password" name="floating_password" id="floating_password"
-                                        class="block focus:outline-hidden bg-transparent px-0 py-2.5 border-0 border-slate-400 dark:border-gray-600 border-b-2 focus:border-blue-600 dark:focus:border-blue-500 w-full text-gray-900 text-sm dark:text-white peer appearance-none focus:ring-0"
-                                        placeholder=" " v-model="form.password" />
-                                    <label for="floating_password"
-                                        class="top-3 peer-focus:left-0 -z-10 absolute text-gray-500 text-sm dark:peer-focus:text-blue-500 dark:text-gray-400 peer-focus:text-blue-600 transform origin-[0] -translate-y-6 peer-focus:-translate-y-6 peer-placeholder-shown:translate-y-0 duration-300 scale-75 peer-placeholder-shown:scale-100 peer-focus:scale-75">Password</label>
+                                    <input
+                                        type="password"
+                                        name="floating_password"
+                                        id="floating_password"
+                                        class="focus:outline-hidden peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        placeholder=" "
+                                        v-model="form.password"
+                                    />
+                                    <label
+                                        for="floating_password"
+                                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 dark:peer-focus:text-blue-500"
+                                        >Password</label
+                                    >
                                 </div>
                                 <div class="group relative z-0 mb-6 w-full">
-                                    <input type="password" name="floating_confirm_password"
+                                    <input
+                                        type="password"
+                                        name="floating_confirm_password"
                                         id="floating_confirm_password"
-                                        class="block focus:outline-hidden bg-transparent px-0 py-2.5 border-0 border-slate-400 dark:border-gray-600 border-b-2 focus:border-blue-600 dark:focus:border-blue-500 w-full text-gray-900 text-sm dark:text-white peer appearance-none focus:ring-0"
-                                        placeholder=" " v-model="form.confirm_password" />
-                                    <label for="floating_confirm_password"
-                                        class="top-3 peer-focus:left-0 -z-10 absolute text-gray-500 text-sm dark:peer-focus:text-blue-500 dark:text-gray-400 peer-focus:text-blue-600 transform origin-[0] -translate-y-6 peer-focus:-translate-y-6 peer-placeholder-shown:translate-y-0 duration-300 scale-75 peer-placeholder-shown:scale-100 peer-focus:scale-75">Confirm
-                                        Password</label>
+                                        class="focus:outline-hidden peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        placeholder=" "
+                                        v-model="form.confirm_password"
+                                    />
+                                    <label
+                                        for="floating_confirm_password"
+                                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 dark:peer-focus:text-blue-500"
+                                        >Confirm Password</label
+                                    >
                                 </div>
                             </div>
-                            <div class="xl:gap-6 grid xl:grid-cols-2">
-                                <div class="group relative z-0 flex items-center space-x-6 mb-6 w-full">
+                            <div class="grid xl:grid-cols-2 xl:gap-6">
+                                <div class="group relative z-0 mb-6 flex w-full items-center space-x-6">
                                     <div class="shrink-0">
-                                        <img class="rounded-full w-16 h-16 object-cover"
-                                            :src="props.user.photo ?? '/img/public/avatar.jpg'" alt="😎" />
+                                        <img
+                                            class="h-16 w-16 rounded-full object-cover"
+                                            :src="props.user.photo ?? '/img/public/avatar.jpg'"
+                                            alt="😎"
+                                        />
                                     </div>
                                     <label class="block">
                                         <span class="sr-only">Choose profile photo</span>
-                                        <input @input="form.photo = $event.target.files[0]" type="file"
+                                        <input
+                                            @input="form.photo = $event.target.files[0]"
+                                            type="file"
                                             accept="image/png, image/jpeg"
-                                            class="block hover:file:bg-violet-100 file:bg-violet-50 file:mr-4 file:px-4 file:py-2 file:border-0 file:rounded-full w-full file:font-semibold text-slate-500 text-sm file:text-sm file:text-violet-700" />
+                                            class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
+                                        />
                                     </label>
-                                    <div v-if="form.errors?.photo" class="text-red-400 text-xs">{{ form.errors.photo }}
-                                    </div>
+                                    <div v-if="form.errors?.photo" class="text-xs text-red-400">{{ form.errors.photo }}</div>
                                 </div>
 
-                                <div class="flex justify-end items-start mb-6 w-full">
-                                    <button type="submit"
-                                        class="bg-slate-700 hover:bg-slate-800 dark:bg-slate-600 dark:hover:bg-slate-700 px-8 py-2.5 rounded-md w-full sm:w-auto font-medium text-center text-sm text-white focus:ring-4 focus:ring-slate-300 dark:focus:ring-slate-800">
+                                <div class="mb-6 flex w-full items-start justify-end">
+                                    <button
+                                        type="submit"
+                                        class="w-full rounded-md bg-slate-700 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 sm:w-auto"
+                                    >
                                         Update User
                                     </button>
                                 </div>
@@ -72,14 +109,12 @@
                 </div>
             </div>
         </div>
-    </AuthLayout>
+    </AppLayout>
 </template>
 
 <script setup>
+import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-
-
 const props = defineProps({
     user: Object,
 });

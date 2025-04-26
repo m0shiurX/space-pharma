@@ -2,7 +2,7 @@
 
     <Head title="Sales" />
 
-    <AuthLayout>
+    <AppLayout>
         <template #header>
             <h2 class="font-semibold text-gray-800 text-xl leading-tight">Recent Sales</h2>
         </template>
@@ -122,14 +122,14 @@
                 <Pagination class="mt-5" :links="props.sales.links" />
             </div>
         </div>
-    </AuthLayout>
+    </AppLayout>
 </template>
 <script setup>
 import { watch } from 'vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
 
 import Pagination from '@/Shared/Pagination.vue';
-import AuthLayout from '@/layouts/AuthLayout.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
 import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
