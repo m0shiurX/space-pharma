@@ -26,7 +26,7 @@
                                     <Icon icon="manufacturer" class="w-8 h-8 stroke-orange-300" />
                                     <div class="flex flex-col ml-2">
                                         <span class="font-semibold text-slate-500 text-sm">{{ manufacturer.name
-                                            }}</span>
+                                        }}</span>
                                         <span class="text-slate-400 text-xs">{{ manufacturer.location }}</span>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                     <label class="block mb-2" for="purchase_date">Purchase Date</label>
                                     <input id="purchase_date" v-model="form.purchase_date" type="date"
                                         onkeydown="return false"
-                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 sm:text-sm appearance-none focus:outline-hidden focus:ring-orange-400"
+                                        class="focus:outline-hidden bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 sm:text-sm appearance-none focus:ring-orange-400"
                                         required disabled />
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <div v-if="search.length > 0 && searchResultShown"
                                         class="top-20 left-0 z-50 absolute rounded-b-lg rounded-t-sm w-full h-96 overflow-y-auto">
                                         <ul
-                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-hidden">
+                                            class="focus:outline-hidden bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black">
                                             <li v-for="(medicine, index) in filteredMedicine" :key="medicine.id"
                                                 class="relative hover:bg-orange-200 focus:bg-orange-200 py-2 pr-4 pl-10 border-orange-200 border-y hover:border-orange-300 hover:border-y w-full text-slate-900 cursor-pointer"
                                                 role="option" tabindex="-1" value="0"
@@ -101,7 +101,7 @@
                             <table class="w-full whitespace-nowrap table-auto">
                                 <thead>
                                     <tr
-                                        class="bg-white border border-gray-100 rounded-lg h-12 text-base text-gray-500 focus:outline-hidden">
+                                        class="focus:outline-hidden bg-white border border-gray-100 rounded-lg h-12 text-base text-gray-500">
                                         <th class="pr-2 pl-5 border-gray-100 border-r text-left">Medicine</th>
                                         <th class="pl-5 border-gray-100 border-x w-32 text-left">BATCH</th>
                                         <th class="pl-5 border-gray-100 border-x w-32 text-left">Expiry</th>
@@ -157,7 +157,7 @@
                                             </td>
                                             <td class="p-0 w-12">
                                                 <button @click="removeItem(index)" type="button"
-                                                    class="inline-flex justify-center bg-red-100 hover:bg-red-200 px-3 py-2.5 w-12 h-full text-center text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                                    class="inline-flex justify-center focus:outline-hidden bg-red-100 hover:bg-red-200 px-3 py-2.5 w-12 h-full text-center text-orange-900 text-sm leading-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                                     <Icon icon="close" class="w-5 h-5 stroke-orange-300" />
                                                 </button>
                                             </td>
@@ -263,7 +263,7 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import CurrencyInput from '@/Units/CurrencyInput.vue';
 import Icon from '@/Shared/Icon.vue';

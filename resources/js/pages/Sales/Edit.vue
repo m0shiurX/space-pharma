@@ -80,7 +80,7 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';
 

@@ -132,7 +132,7 @@
 import { watch, computed } from 'vue';
 import { Head, useForm, usePage, Link } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
 import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';

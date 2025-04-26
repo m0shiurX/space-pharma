@@ -17,7 +17,7 @@
                     </SearchFilter>
 
                     <Link
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start focus:outline-hidden bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         href="#"><span class="font-medium text-sm text-white leading-none">Add to Stock</span>
                     </Link>
                 </div>
@@ -28,7 +28,7 @@
                     <table class="w-full whitespace-nowrap table-auto">
                         <thead>
                             <tr tabindex="0"
-                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-hidden">
+                                class="focus:outline-hidden bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg">
                                 <th class="pl-5 border-gray-100 border-r text-left">Medicine</th>
                                 <th class="pl-5 border-gray-100 border-x text-left">Batch</th>
                                 <th class="text-right pr-5 border-gray-100 border-x">Stock</th>
@@ -77,7 +77,7 @@
                                     </td>
                                     <td class="pl-5 text-center">
                                         <Link :href="route('stocks.show', stock.id)"
-                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                            class="focus:outline-hidden bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                         See History
                                         </Link>
                                     </td>
@@ -96,13 +96,13 @@
 import { watch, ref, onMounted } from 'vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
-import Pagination from '@/Shared/Pagination';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Pagination from '@/Shared/Pagination.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
 import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
 import debounce from 'lodash/debounce';
-import FlashMessages from '@/Shared/FlashMessages';
+import FlashMessages from '@/Shared/FlashMessages.vue';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 
 const props = defineProps({

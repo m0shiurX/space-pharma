@@ -1,13 +1,11 @@
 <script setup>
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
-const fired = () => {
-    swal.fire('Hello Vue world!!!');
-};
 </script>
 
 <template>
+
     <Head title="Dashboard" />
 
     <AuthLayout>
@@ -17,7 +15,6 @@ const fired = () => {
         <Swal />
         <div class="bg-white/30 mt-8 py-4 rounded-lg">
             <div class="p-8 h-96">Will setup About content here.</div>
-            <button @click="fired">Click</button>
         </div>
     </AuthLayout>
 </template>

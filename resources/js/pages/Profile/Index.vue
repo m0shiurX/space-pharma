@@ -26,7 +26,7 @@
 
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 
 defineProps({
     user: Object,

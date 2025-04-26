@@ -17,7 +17,7 @@
                     </SearchFilter>
 
                     <Link
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start focus:outline-hidden bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         :href="route('medicines.create')"><span class="font-medium text-sm text-white leading-none">Add
                         a
                         Medicine</span>
@@ -30,7 +30,7 @@
                     <table class="w-full whitespace-nowrap table-auto">
                         <thead>
                             <tr tabindex="0"
-                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-hidden">
+                                class="focus:outline-hidden bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg">
                                 <th class="pl-5 border-gray-100 border-r text-left">Medicine</th>
                                 <th class="pl-5 border-gray-100 border-x text-left">Type & Manufacturer</th>
                                 <th class="pl-5 border-gray-100 border-x text-left">Stock</th>
@@ -89,7 +89,7 @@
                                     </td>
                                     <td class="pl-5">
                                         <Link :href="route('medicines.show', medicine.id)"
-                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                            class="focus:outline-hidden bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                         See Details
                                         </Link>
                                     </td>
@@ -104,7 +104,7 @@
                                                     class="right-0 z-30 absolute flex flex-col bg-white shadow-sm mr-2 rounded-md w-24">
                                                     <MenuItem v-slot="{ active }">
                                                     <Link
-                                                        class="hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-hidden"
+                                                        class="focus:outline-hidden hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer"
                                                         :class="{ 'bg-orange-600 text-white': active }"
                                                         :href="route('medicines.edit', medicine.id)" as="button">
                                                     Edit
@@ -112,7 +112,7 @@
                                                     </MenuItem>
                                                     <MenuItem v-slot="{ active }">
                                                     <button
-                                                        class="hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-hidden"
+                                                        class="focus:outline-hidden hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer"
                                                         :class="{ 'bg-orange-600 text-white': active }"
                                                         @click="destroyItem(medicine.id)">
                                                         Delete
@@ -138,12 +138,12 @@
                             class="block hover:file:bg-violet-100 file:bg-violet-50 file:mr-4 file:px-4 file:py-2 file:border-0 file:rounded-full w-full file:font-semibold text-slate-500 text-sm file:text-sm file:text-violet-700" />
                     </label>
                     <button
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 px-6 py-2 rounded-sm text-white focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start focus:outline-hidden bg-orange-700 hover:bg-orange-600 px-6 py-2 rounded-sm text-white focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         type="submit">
                         Start Importing
                     </button>
                     <a :href="route('medicines.export')"
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 ml-5 px-6 py-2 rounded-sm text-white focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2">
+                        class="inline-flex justify-start items-start focus:outline-hidden bg-orange-700 hover:bg-orange-600 ml-5 px-6 py-2 rounded-sm text-white focus:ring-2 focus:ring-orange-600 focus:ring-offset-2">
                         Export Medicines
                     </a>
                 </form>
@@ -152,16 +152,15 @@
     </AuthLayout>
 </template>
 <script setup>
-import { watch, computed, ref, onMounted } from 'vue';
+import { watch, computed } from 'vue';
 import { Head, useForm, usePage, Link } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
-import Pagination from '@/Shared/Pagination';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Pagination from '@/Shared/Pagination.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';
 import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
 import debounce from 'lodash/debounce';
-import FlashMessages from '@/Shared/FlashMessages';
+import FlashMessages from '@/Shared/FlashMessages.vue';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 
 const props = defineProps({
