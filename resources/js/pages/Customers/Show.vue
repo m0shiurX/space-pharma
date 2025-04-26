@@ -38,3 +38,4 @@ const destroyCustomer = () => {
         // Inertia.delete(route('customers.destroy', props.customer.id));
     }
 };
+</script>
