@@ -2,7 +2,7 @@
 
     <Head title="Medicines" />
 
-    <AuthLayout>
+    <AppLayout>
         <template #header>
             <h2 class="font-semibold text-gray-800 text-xl leading-tight">Medicines List</h2>
         </template>
@@ -90,7 +90,7 @@
                 <Pagination class="mt-5" :links="props.stocks.links" />
             </div>
         </div>
-    </AuthLayout>
+    </AppLayout>
 </template>
 <script setup>
 import { watch } from 'vue';
