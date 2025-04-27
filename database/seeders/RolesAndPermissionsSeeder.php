@@ -60,10 +60,26 @@ class RolesAndPermissionsSeeder extends Seeder
          **************************************/
 
         $manager_role->givePermissionTo([
-            $create_manufacturers, $read_manufacturers, $delete_manufacturers, $update_manufacturers,            $restore_manufacturers,
-            $create_medicines, $read_medicines, $delete_medicines, $update_medicines, $restore_medicines,
-            $create_sales, $read_sales, $delete_sales, $update_sales, $restore_sales,
-            $create_purchases, $read_purchases, $delete_purchases, $update_purchases, $restore_purchases,
+            $create_manufacturers,
+            $read_manufacturers,
+            $delete_manufacturers,
+            $update_manufacturers,
+            $restore_manufacturers,
+            $create_medicines,
+            $read_medicines,
+            $delete_medicines,
+            $update_medicines,
+            $restore_medicines,
+            $create_sales,
+            $read_sales,
+            $delete_sales,
+            $update_sales,
+            $restore_sales,
+            $create_purchases,
+            $read_purchases,
+            $delete_purchases,
+            $update_purchases,
+            $restore_purchases,
         ]);
 
         /**************************************
