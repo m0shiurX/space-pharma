@@ -1,28 +1,56 @@
 <template>
-
     <Head title="Manufacturers" />
 
     <AppLayout>
         <template #header>
-            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Create New Manufacturer</h2>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Create New Manufacturer</h2>
         </template>
+        <div class="rounded-lg bg-white p-6 shadow-md">
+            <div class="mx-auto max-w-lg">
+                <!-- Header -->
+                <div class="mb-6 text-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Customer Details</h2>
+                    <p class="mt-2 text-gray-600">Review and manage customer information</p>
+                </div>
 
-        <div class="bg-white/30 mt-8 py-8 rounded-lg">
-            <div class="px-4 md:px-8 xl:px-10 rounded-lg">
-                <div class="mx-auto w-2xl max-w-lg">
-                    <h2 class="font-bold text-2xl">We cant wait to meet you!</h2>
-                    <p class="mt-2 text-lg">Please fill in the details below so that we can get in contact with you.</p>
-                    <div>
-                        <pre>
-                    {{ props.customer }}
-                </pre>
-                    </div>
-                    <div class="mt-6">
-                        <div class="flex justify-end items-center space-x-5">
-                            <button type="button" @click="destroyCustomer"
-                                class="bg-orange-500 px-8 py-2 rounded-md text-white">Delete</button>
+                <!-- Customer Card -->
+                <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-5">
+                    <div class="space-y-4">
+                        <!-- Name -->
+                        <div class="flex items-start">
+                            <span class="w-24 text-sm font-medium text-gray-500">Name</span>
+                            <span class="flex-1 text-gray-800">{{ props.customer.name }}</span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="flex items-start">
+                            <span class="w-24 text-sm font-medium text-gray-500">Address</span>
+                            <span class="flex-1 text-gray-800">{{ props.customer.address }}</span>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start">
+                            <span class="w-24 text-sm font-medium text-gray-500">Phone</span>
+                            <span class="flex-1 text-gray-800">
+                                {{ props.customer.phone }}
+                            </span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex justify-end space-x-4">
+                    <div class="mt-6">
+                        <div class="flex items-center justify-end space-x-5">
+                            <button type="button" @click="destroyCustomer" class="rounded-md bg-orange-500 px-8 py-2 text-white">Delete</button>
+                        </div>
+                    </div>
+                    <Link
+                        :href="route('customers.edit', customer.id)"
+                        class="rounded-lg bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Edit Details
+                    </Link>
                 </div>
             </div>
         </div>

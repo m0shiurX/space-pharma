@@ -8,16 +8,91 @@
 
         <div class="mt-8 rounded-lg bg-white/30 py-8">
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
-                <div class="w-2xl mx-auto max-w-lg">
-                    <h2 class="text-2xl font-bold">We cant wait to meet you!</h2>
-                    <p class="mt-2 text-lg">Please fill in the details below so that we can get in contact with you.</p>
-                    <div>
-                        <pre>
-                    {{ medicine }}
-                </pre
-                        >
+                <div class="mx-auto max-w-2xl rounded-xl bg-white p-6 shadow-md">
+                    <h2 class="mb-6 text-2xl font-semibold text-gray-800">Medicine Information</h2>
+
+                    <div class="space-y-5">
+                        <!-- Row 1 -->
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Medicine Name</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.name }}
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Generic Name</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.generic_name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Manufacturer</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.manufacturer }}
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Category</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.category }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Strength</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.strength }}
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Unit</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">
+                                    {{ medicine.unit }}
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Discount</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">{{ medicine.discount }}%</div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Purchase Price</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">${{ medicine.purchase_price }}</div>
+                            </div>
+
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-gray-700">Selling Price</label>
+                                <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-2">${{ medicine.selling_price }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Stock Info -->
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-gray-700">Stock Status</label>
+                            <div class="rounded-md border border-gray-200 bg-gray-50 px-4 py-3 text-center">
+                                <span v-if="medicine.stocks.data.length === 0" class="text-gray-500"> No stock records available </span>
+                                <!-- Add stock data display here if needed -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-6">
+
+                    <!-- Action Buttons -->
+                    <div class="mt-8 flex justify-end space-x-4 border-t border-gray-200 pt-6">
                         <div class="flex items-center justify-end space-x-5">
                             <Link
                                 :href="route('medicines.edit', medicine.id)"
