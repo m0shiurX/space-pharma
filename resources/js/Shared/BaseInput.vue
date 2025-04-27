@@ -30,7 +30,7 @@ const textInput = computed({
         <label class="mb-2 block" :for="props.label"> {{ props.label }} </label>
         <input
             :id="props.label"
-            class="h-10 w-full rounded-md border border-orange-400 bg-orange-50 focus:border focus:border-orange-400 focus:ring-orange-600"
+            class="h-10 w-full rounded-md border border-orange-400 bg-orange-50 ps-2 focus:border focus:border-orange-400 focus:ring-orange-600"
             type="text"
             placeholder=""
             v-model="textInput"

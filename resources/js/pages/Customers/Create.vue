@@ -37,8 +37,9 @@
                             </div>
                         </div>
 
-                        <h2 class="text-2xl font-bold">We cant wait to meet you!</h2>
-                        <p class="mt-2 text-lg">Please fill in the details below so that we can get in contact with you.</p>
+                        <h2 class="text-2xl font-bold">Let's add a new Customer!</h2>
+                        <p class="mt-2 text-lg">Enter the customer's information below so we can keep everything organized.</p>
+
                         <div class="mt-6">
                             <BaseInput label="Name" v-model="form.name" :error="form.errors.name" class="" />
                             <BaseInput label="Location" v-model="form.address" :error="form.errors.address" class="" />
