@@ -36,4 +36,34 @@ class StockController extends Controller
     {
         // code...
     }
+    public function create()
+{
+    $latest_invoice = \App\Models\Sale::withTrashed()->latest()->max('id') + 1;
+    $invoice_no = 'SL-'.str_pad((int) $latest_invoice, 6, '0', STR_PAD_LEFT);
+
+    return Inertia::render('Stocks/Create', [
+        'invoice_no' => $invoice_no,
+        'medicines' => \App\Models\Medicine::select(['id', 'name', 'manufacturer_id'])
+            ->with('manufacturer:id,name')
+            ->orderBy('name')
+            ->get()
+            ->map(function ($medicine) {
+                return [
+                    'value' => $medicine->id,
+                    'label' => $medicine->name . ' (' . $medicine->manufacturer->name . ')'
+                ];
+            }),
+        'initialValues' => [
+            'medicine_id' => null,
+            'batch_id' => '',
+            'quantity' => 1,
+            'expiry_date' => now()->addYear()->format('Y-m-d'),
+            'purchase_price' => 0,
+            'selling_price' => 0,
+            'invoice_no' => $invoice_no,
+            'supplier' => '',
+            'remarks' => ''
+        ]
+    ]);
+}
 }

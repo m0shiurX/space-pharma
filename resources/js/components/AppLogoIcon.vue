@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const svgPath =
+    'https://img.freepik.com/free-vector/stethoscope-with-red-heart-icon_1308-127523.jpg?t=st=1745736405~exp=1745740005~hmac=6e97f65b94392f134b643a8e5dcfb6d9fbbeadd42efa0203e73aeb6494e5abbe&w=740';
 import type { HTMLAttributes } from 'vue';
-
 defineOptions({
     inheritAttrs: false,
 });
@@ -13,12 +14,11 @@ defineProps<Props>();
 </script>
 
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 42" :class="className" v-bind="$attrs">
-        <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M17.2 5.633 8.6.855 0 5.633v26.51l16.2 9 16.2-9v-8.442l7.6-4.223V9.856l-8.6-4.777-8.6 4.777V18.3l-5.6 3.111V5.633ZM38 18.301l-5.6 3.11v-6.157l5.6-3.11V18.3Zm-1.06-7.856-5.54 3.078-5.54-3.079 5.54-3.078 5.54 3.079ZM24.8 18.3v-6.157l5.6 3.111v6.158L24.8 18.3Zm-1 1.732 5.54 3.078-13.14 7.302-5.54-3.078 13.14-7.3v-.002Zm-16.2 7.89 7.6 4.222V38.3L2 30.966V7.92l5.6 3.111v16.892ZM8.6 9.3 3.06 6.222 8.6 3.143l5.54 3.08L8.6 9.3Zm21.8 15.51-13.2 7.334V38.3l13.2-7.334v-6.156ZM9.6 11.034l5.6-3.11v14.6l-5.6 3.11v-14.6Z"
-        />
-    </svg>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 42">
+        <path d="M10 12h20v20a8 8 0 01-8 8 8 8 0 01-8-8V12z" fill="#3B82F6" />
+        <path d="M15 12h10v4a5 5 0 01-5 5 5 5 0 01-5-5v-4z" fill="#1D4ED8" />
+        <path d="M18 8h4v4h-4z" fill="#3B82F6" />
+        <path d="M16 18h8v2h-8zM16 22h8v2h-8z" fill="#FFFFFF" />
+    </svg> -->
+    <img :src="svgPath" alt="Medicine Shop Logo" class="h-12 w-12 rounded-full" />
 </template>
