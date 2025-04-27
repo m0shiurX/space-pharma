@@ -54,7 +54,7 @@
                                         v-model="form.purchase_date"
                                         type="date"
                                         onkeydown="return false"
-                                        class="focus:outline-hidden h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:ring-orange-400 sm:text-sm"
+                                        class="focus:outline-hidden h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 ps-2 text-slate-900 focus:border-orange-400 focus:ring-orange-400 sm:text-sm"
                                         required
                                         disabled
                                     />
@@ -71,7 +71,7 @@
                                     placeholder="Napa"
                                     type="text"
                                     autocomplete="off"
-                                    class="mb-5 h-10 w-full rounded-md border border-orange-400 bg-orange-50 placeholder:text-slate-300 focus:border focus:border-orange-400 focus:ring-orange-600"
+                                    class="mb-5 h-10 w-full rounded-md border border-orange-400 bg-orange-50 ps-2 placeholder:text-slate-300 focus:border focus:border-orange-400 focus:ring-orange-600"
                                     @keydown.up.prevent="highlightPrevious"
                                     @keydown.down.prevent="highlightNext"
                                     @focus="searchResultShown = true"
